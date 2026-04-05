@@ -3,9 +3,7 @@ const router = express.Router()
 const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const { body, validationResult } = require('express-validator')
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
+const prisma = require('../db')
 
 router.get('/sign-up', (req, res) => {
   res.render('sign-up', { errors: [] })
@@ -35,7 +33,8 @@ router.post('/sign-up', [
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: hashed
+        password: hashed,
+        isAdmin: req.body.isAdmin === 'on'
       }
     })
     res.redirect('/login')

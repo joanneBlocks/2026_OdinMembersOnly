@@ -30,6 +30,12 @@
     "express-validator": "^7.3.2",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
+    "pg": "^8.20.0",
     "prisma": "^7.6.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.27",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^3.4.19"
   }
 }
