@@ -17,9 +17,9 @@ function MessageCard({ message, currentUser }) {
   }
 
   return (
-    <div className="bg-champagne rounded-card p-6 shadow-soft border border-softGold border-opacity-20 hover:shadow-elevated transition-all duration-300 hover:scale-[1.01]">
+    <div className="bg-champagne dark:bg-dustyMauve rounded-card p-6 shadow-soft border border-softGold border-opacity-20 hover:shadow-elevated transition-all duration-300 hover:scale-[1.01]">
 
-      <h2 className="font-serif text-xl font-semibold text-deepPlum mb-3">
+      <h2 className="font-serif text-xl font-semibold text-deepPlum dark:text-ivory mb-3">
         {message.title}
       </h2>
       <p className="text-warmGray text-sm leading-relaxed">
@@ -41,7 +41,7 @@ function MessageCard({ message, currentUser }) {
             <form method="POST" action={`/messages/${message.id}/delete`}>
               <button
                 type="submit"
-                className="text-xs text-warmGray hover:text-roseGold tracking-widest uppercase transition-colors duration-200"
+                className="text-xs text-warmGray hover:text-roseGold dark:text-warmGray dark:hover:text-roseGold tracking-widest uppercase transition-colors duration-200"
               >
                 Delete
               </button>
@@ -64,7 +64,9 @@ function MessageCard({ message, currentUser }) {
           {liked ? '🌸' : '🤍'}
         </button>
         {likeCount > 0 && (
-          <span className="text-xs text-warmGray">{likeCount}</span>
+          <span className="text-xs text-warmGray dark:text-warmGray">
+            {likeCount}
+          </span>
         )}
       </div>
 
@@ -76,8 +78,12 @@ function MessageBoard({ messages, currentUser }) {
   if (messages.length === 0) {
     return (
       <div className="text-center py-16">
-        <p className="font-serif text-2xl text-deepPlum mb-3">No messages yet</p>
-        <p className="text-warmGray text-sm">Be the first to share something hopeful.</p>
+        <p className="font-serif text-2xl text-deepPlum dark:text-ivory mb-3">
+          No messages yet
+        </p>
+        <p className="text-warmGray text-sm">
+          Be the first to share something hopeful.
+        </p>
       </div>
     )
   }
