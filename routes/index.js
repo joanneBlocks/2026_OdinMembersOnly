@@ -14,6 +14,7 @@ router.get('/', async (req, res) => {
       id: msg.id,
       title: msg.title,
       text: msg.text,
+      imageUrl: msg.imageUrl,
       createdAt: msg.createdAt,
       author: {
         firstName: msg.author.firstName,
