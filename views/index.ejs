@@ -1,25 +1,39 @@
-<h1>Message Board</h1>
+<div class="mb-8">
+  <h1 class="font-serif text-4xl font-bold text-deepPlum mb-2">The Board</h1>
+  <p class="text-warmGray text-sm tracking-wide">A place to share light, hope and encouragement 🌸</p>
+</div>
 
 <% if (messages.length === 0) { %>
-  <p>No messages yet. Be the first to post!</p>
+  <div class="text-center py-16">
+    <p class="font-serif text-2xl text-deepPlum mb-3">No messages yet</p>
+    <p class="text-warmGray text-sm">Be the first to share something hopeful.</p>
+  </div>
 <% } %>
 
-<% messages.forEach(msg => { %>
-  <div class="message-card">
-    <h2><%= msg.title %></h2>
-    <p><%= msg.text %></p>
+<div class="flex flex-col gap-4">
+  <% messages.forEach(msg => { %>
+    <div class="bg-champagne rounded-card p-6 shadow-soft border border-softGold border-opacity-20 hover:shadow-elevated transition-all duration-300 hover:scale-[1.01]">
 
-    <% if (currentUser && currentUser.isMember) { %>
-      <p class="message-meta">
-        By <%= msg.author.firstName %> <%= msg.author.lastName %> 
-        on <%= new Date(msg.createdAt).toDateString() %>
-      </p>
-    <% } %>
+      <h2 class="font-serif text-xl font-semibold text-deepPlum mb-3"><%= msg.title %></h2>
+      <p class="text-warmGray text-sm leading-relaxed"><%= msg.text %></p>
 
-    <% if (currentUser && currentUser.isAdmin) { %>
-      <form method="POST" action="/messages/<%= msg.id %>/delete">
-        <button type="submit">Delete</button>
-      </form>
-    <% } %>
-  </div>
-<% }) %>
+      <% if (currentUser && currentUser.isMember) { %>
+        <div class="mt-4 pt-4 border-t border-softGold border-opacity-20 flex justify-between items-center">
+          <span class="text-xs text-warmGray tracking-wide">
+            By <span class="text-roseGold"><%= msg.author.firstName %> <%= msg.author.lastName %></span>
+            · <%= new Date(msg.createdAt).toDateString() %>
+          </span>
+
+          <% if (currentUser && currentUser.isAdmin) { %>
+            <form method="POST" action="/messages/<%= msg.id %>/delete">
+              <button type="submit" class="text-xs text-warmGray hover:text-roseGold tracking-widest uppercase transition-colors duration-200">
+                Delete
+              </button>
+            </form>
+          <% } %>
+        </div>
+      <% } %>
+
+    </div>
+  <% }) %>
+</div>
