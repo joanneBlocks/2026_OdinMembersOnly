@@ -113,9 +113,9 @@ function MessageBoard({ messages, currentUser }) {
 // Boot the app
 const container = document.getElementById('message-board-root')
 if (container) {
-  const messages = JSON.parse(container.dataset.messages)
+  const messages = JSON.parse(decodeURIComponent(container.dataset.messages))
   const currentUser = container.dataset.currentUser
-    ? JSON.parse(container.dataset.currentUser)
+    ? JSON.parse(decodeURIComponent(container.dataset.currentUser))
     : null
 
   ReactDOM.createRoot(container).render(
