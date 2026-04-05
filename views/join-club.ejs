@@ -1,22 +1,16 @@
 <div class="max-w-md mx-auto">
   <div class="mb-8">
-    <h1 class="font-serif text-4xl font-bold text-deepPlum mb-2">Become a Radiant</h1>
+    <h1 class="font-serif text-4xl font-bold text-deepPlum dark:text-ivory mb-2">Become a Radiant</h1>
     <p class="text-warmGray text-sm tracking-wide leading-relaxed">
-      Radiants are the heart of House of Hope — women who see each other fully, 
+      Radiants are the heart of House of Hope — women who see each other fully,
       names and all. Enter the passcode to join their circle 🌸
     </p>
   </div>
 
-  <% if (error) { %>
-    <div class="bg-softBlush border-l-4 border-roseGold rounded-btn p-4 mb-6">
-      <p class="text-sm text-roseGold"><%= error %></p>
-    </div>
-  <% } %>
-
   <form method="POST" action="/join-club" class="flex flex-col gap-5">
     <div>
       <label class="block text-xs uppercase tracking-widest text-warmGray mb-2">Secret Passcode</label>
-      <input type="password" name="passcode" class="w-full bg-softBlush border border-warmGray border-opacity-30 rounded-btn px-4 py-3 text-sm text-deepPlum focus:outline-none focus:border-roseGold transition-colors duration-200">
+      <input type="password" name="passcode" class="w-full bg-softBlush dark:bg-dustyMauve dark:text-ivory border border-warmGray border-opacity-30 rounded-btn px-4 py-3 text-sm text-deepPlum focus:outline-none focus:border-roseGold transition-colors duration-200">
     </div>
     <button type="submit" class="bg-roseGold text-ivory text-sm uppercase tracking-widest py-3 px-6 rounded-btn hover:brightness-110 shadow-glow transition-all duration-200 hover:scale-[1.02] mt-2">
       Enter the Circle
