@@ -46,7 +46,7 @@ router.post('/sign-up', [
 })
 
 router.get('/login', (req, res) => {
-  res.render('login', { error: null })
+  res.render('login')
 })
 
 router.post('/login', passport.authenticate('local', {
