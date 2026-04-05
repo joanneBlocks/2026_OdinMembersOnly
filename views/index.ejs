@@ -1,0 +1,25 @@
+<h1>Message Board</h1>
+
+<% if (messages.length === 0) { %>
+  <p>No messages yet. Be the first to post!</p>
+<% } %>
+
+<% messages.forEach(msg => { %>
+  <div class="message-card">
+    <h2><%= msg.title %></h2>
+    <p><%= msg.text %></p>
+
+    <% if (currentUser && currentUser.isMember) { %>
+      <p class="message-meta">
+        By <%= msg.author.firstName %> <%= msg.author.lastName %> 
+        on <%= new Date(msg.createdAt).toDateString() %>
+      </p>
+    <% } %>
+
+    <% if (currentUser && currentUser.isAdmin) { %>
+      <form method="POST" action="/messages/<%= msg.id %>/delete">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
+  </div>
+<% }) %>
