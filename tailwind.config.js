@@ -1,8 +1,17 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './views/**/*.ejs',
     './public/**/*.js',
+  ],
+  safelist: [
+    'bg-ivory', 'bg-champagne', 'bg-roseGold', 'bg-softBlush',
+    'bg-deepPlum', 'bg-midnightPlum', 'bg-dustyMauve',
+    'text-ivory', 'text-champagne', 'text-roseGold', 'text-softGold',
+    'text-deepPlum', 'text-warmGray', 'text-softBlush',
+    'border-champagne', 'border-roseGold', 'border-softGold',
+    'shadow-soft', 'shadow-elevated', 'shadow-glow',
+    'rounded-card', 'rounded-btn',
+    'font-serif', 'font-sans',
   ],
   theme: {
     extend: {
