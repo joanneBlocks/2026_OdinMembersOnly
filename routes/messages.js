@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { PrismaClient } = require('@prisma/client')
-
-const prisma = new PrismaClient()
+const prisma = require('../db')
 
 router.get('/new-message', (req, res) => {
   if (!req.user) return res.redirect('/login')
