@@ -3,32 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Members Only</title>
-  <style>
-    body { font-family: sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
-    nav { display: flex; gap: 16px; margin-bottom: 32px; border-bottom: 1px solid #ccc; padding-bottom: 16px; }
-    nav a { text-decoration: none; color: #333; }
-    .error { color: red; font-size: 14px; }
-    .message-card { border: 1px solid #ccc; padding: 16px; margin-bottom: 16px; border-radius: 8px; }
-    .message-meta { color: #888; font-size: 13px; margin-top: 8px; }
-    button { cursor: pointer; }
-  </style>
+  <title>House of Hope</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css?v=2">
 </head>
-<body>
+<body class="bg-ivory font-sans text-deepPlum min-h-screen flex flex-col">
 
-  <nav>
-    <a href="/">Home</a>
-    <% if (currentUser) { %>
-      <a href="/new-message">+ New Message</a>
-      <a href="/join-club">Join the Club</a>
-      <a href="/logout">Logout (<%= currentUser.firstName %>)</a>
-    <% } else { %>
-      <a href="/sign-up">Sign Up</a>
-      <a href="/login">Login</a>
-    <% } %>
-  </nav>
+  <!-- Header -->
+  <header class="border-b border-champagne px-8 py-5">
+    <div class="max-w-3xl mx-auto flex justify-between items-center">
 
-  <%- body %>
+      <a href="/" class="font-serif text-2xl font-bold text-deepPlum tracking-wide">
+        House <span class="text-roseGold">of Hope</span>
+      </a>
+
+      <nav class="flex items-center gap-6">
+        <a href="/" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">Board</a>
+        <% if (currentUser) { %>
+          <a href="/new-message" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">+ Post</a>
+          <% if (!currentUser.isMember) { %>
+            <a href="/join-club" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">Become a Radiant</a>
+          <% } %>
+          <a href="/logout" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">
+            Goodbye, <%= currentUser.firstName %>
+          </a>
+        <% } else { %>
+          <a href="/login" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">Login</a>
+          <a href="/sign-up" class="text-sm bg-roseGold text-ivory px-5 py-3 rounded-btn hover:brightness-110 transition-all duration-200 shadow-glow tracking-wide">
+            Join Us
+          </a>
+        <% } %>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="flex-1 max-w-3xl mx-auto w-full px-8 py-12">
+    <%- body %>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-champagne py-6 text-center text-xs text-warmGray tracking-widest uppercase">
+    House of Hope &mdash; a space for women who lift each other up 🌸
+  </footer>
 
 </body>
 </html>
