@@ -3,37 +3,10 @@
   <p class="text-warmGray text-sm tracking-wide">A place to share light, hope and encouragement 🌸</p>
 </div>
 
-<% if (messages.length === 0) { %>
-  <div class="text-center py-16">
-    <p class="font-serif text-2xl text-deepPlum mb-3">No messages yet</p>
-    <p class="text-warmGray text-sm">Be the first to share something hopeful.</p>
-  </div>
-<% } %>
+<div
+  id="message-board-root"
+  data-messages="<%- JSON.stringify(messages) %>"
+  data-current-user="<%- safeUser ? JSON.stringify(safeUser) : '' %>"
+></div>
 
-<div class="flex flex-col gap-4">
-  <% messages.forEach(msg => { %>
-    <div class="bg-champagne rounded-card p-6 shadow-soft border border-softGold border-opacity-20 hover:shadow-elevated transition-all duration-300 hover:scale-[1.01]">
-
-      <h2 class="font-serif text-xl font-semibold text-deepPlum mb-3"><%= msg.title %></h2>
-      <p class="text-warmGray text-sm leading-relaxed"><%= msg.text %></p>
-
-      <% if (currentUser && currentUser.isMember) { %>
-        <div class="mt-4 pt-4 border-t border-softGold border-opacity-20 flex justify-between items-center">
-          <span class="text-xs text-warmGray tracking-wide">
-            By <span class="text-roseGold"><%= msg.author.firstName %> <%= msg.author.lastName %></span>
-            · <%= new Date(msg.createdAt).toDateString() %>
-          </span>
-
-          <% if (currentUser && currentUser.isAdmin) { %>
-            <form method="POST" action="/messages/<%= msg.id %>/delete">
-              <button type="submit" class="text-xs text-warmGray hover:text-roseGold tracking-widest uppercase transition-colors duration-200">
-                Delete
-              </button>
-            </form>
-          <% } %>
-        </div>
-      <% } %>
-
-    </div>
-  <% }) %>
-</div>
+<script type="module" src="/js/messageBoard.js"></script>
