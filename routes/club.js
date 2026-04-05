@@ -16,13 +16,15 @@ router.post('/join-club', async (req, res) => {
         where: { id: req.user.id },
         data: { isMember: true }
       })
+      req.flash('success', 'Welcome to the circle, Radiant! 🌸')
       res.redirect('/')
     } catch (err) {
       console.error(err)
       res.status(500).send('Something went wrong')
     }
   } else {
-    res.render('join-club', { error: 'Wrong passcode, try again!' })
+    req.flash('error', 'Wrong passcode, try again!')
+    res.redirect('/join-club')
   }
 })
 
