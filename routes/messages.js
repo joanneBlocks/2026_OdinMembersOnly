@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 const prisma = require('../db')
+const upload = require('../middleware/upload')
 
 router.get('/new-message', (req, res) => {
   if (!req.user) return res.redirect('/login')
   res.render('new-message', { error: null })
 })
 
-router.post('/new-message', async (req, res) => {
+router.post('/new-message', upload.single('image'), async (req, res) => {
   if (!req.user) return res.redirect('/login')
 
   try {
@@ -15,10 +16,11 @@ router.post('/new-message', async (req, res) => {
       data: {
         title: req.body.title,
         text: req.body.text,
+        imageUrl: req.file ? `/uploads/${req.file.filename}` : null,
         authorId: req.user.id
       }
     })
-    req.flash('success', 'Your message has been shared with the board 🌸')
+    req.flash('success', 'Your message has been shared with the Heartspace 🌸')
     res.redirect('/')
   } catch (err) {
     console.error(err)
