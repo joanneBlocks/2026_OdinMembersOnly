@@ -1,0 +1,16 @@
+<h1>Join the Club</h1>
+
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+<p>Enter the secret passcode to become a member and see who wrote each message.</p>
+
+<form method="POST" action="/join-club">
+  <div>
+    <label>Passcode</label><br>
+    <input type="password" name="passcode">
+  </div>
+  <br>
+  <button type="submit">Join</button>
+</form>
