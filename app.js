@@ -3,8 +3,7 @@ const session = require('express-session')
 const passport = require('passport')
 const expressLayouts = require('express-ejs-layouts')
 const path = require('path')
-app.use(express.static(path.join(__dirname, 'public')))
-
+const flash = require('connect-flash')
 require('dotenv').config()
 
 const indexRouter = require('./routes/index')
@@ -13,6 +12,9 @@ const clubRouter = require('./routes/club')
 const messagesRouter = require('./routes/messages')
 
 const app = express()
+
+// Static files
+app.use(express.static(path.join(__dirname, 'public')))
 
 // View engine setup
 app.set('view engine', 'ejs')
@@ -33,9 +35,14 @@ require('./middleware/passport')
 app.use(passport.initialize())
 app.use(passport.session())
 
-// Make currentUser available in all views
+// Flash
+app.use(flash())
+
+// Make currentUser and flash messages available in all views
 app.use((req, res, next) => {
   res.locals.currentUser = req.user
+  res.locals.success = req.flash('success')
+  res.locals.error = req.flash('error')
   next()
 })
 
