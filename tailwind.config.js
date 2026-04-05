@@ -1,7 +1,9 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     './views/**/*.ejs',
     './public/**/*.js',
+    './src/**/*.jsx'
   ],
   safelist: [
     'bg-ivory', 'bg-champagne', 'bg-roseGold', 'bg-softBlush',
@@ -12,6 +14,9 @@ module.exports = {
     'shadow-soft', 'shadow-elevated', 'shadow-glow',
     'rounded-card', 'rounded-btn',
     'font-serif', 'font-sans',
+    'dark:bg-midnightPlum', 'dark:bg-dustyMauve',
+    'dark:text-ivory', 'dark:text-warmGray',
+    'dark:border-dustyMauve',
   ],
   theme: {
     extend: {

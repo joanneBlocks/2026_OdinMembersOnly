@@ -5,34 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>House of Hope</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css?v=2">
+  <link rel="stylesheet" href="/css/style.css?v=3">
+  <script>
+    // Apply dark mode before page renders to avoid flash
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark')
+    }
+  </script>
 </head>
-<body class="bg-ivory font-sans text-deepPlum min-h-screen flex flex-col">
+<body class="bg-ivory dark:bg-midnightPlum font-sans text-deepPlum dark:text-ivory min-h-screen flex flex-col transition-colors duration-300">
 
   <!-- Header -->
-  <header class="border-b border-champagne px-8 py-5">
+  <header class="border-b border-champagne dark:border-dustyMauve px-8 py-5">
     <div class="max-w-3xl mx-auto flex justify-between items-center">
 
-      <a href="/" class="font-serif text-2xl font-bold text-deepPlum tracking-wide">
+      <a href="/" class="font-serif text-2xl font-bold text-deepPlum dark:text-ivory tracking-wide">
         House <span class="text-roseGold">of Hope</span>
       </a>
 
       <nav class="flex items-center gap-6">
-        <a href="/" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">Heartspace</a>
+        <a href="/" class="text-sm text-warmGray hover:text-roseGold dark:text-warmGray dark:hover:text-roseGold transition-colors duration-200 tracking-wide">Heartspace</a>
         <% if (currentUser) { %>
-          <a href="/new-message" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">+ Post</a>
+          <a href="/new-message" class="text-sm text-warmGray hover:text-roseGold dark:text-warmGray dark:hover:text-roseGold transition-colors duration-200 tracking-wide">+ Post</a>
           <% if (!currentUser.isMember) { %>
-            <a href="/join-club" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">Become a Radiant</a>
+            <a href="/join-club" class="text-sm text-warmGray hover:text-roseGold dark:text-warmGray dark:hover:text-roseGold transition-colors duration-200 tracking-wide">Become a Radiant</a>
           <% } %>
-          <a href="/logout" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">
+          <a href="/logout" class="text-sm text-warmGray hover:text-roseGold dark:text-warmGray dark:hover:text-roseGold transition-colors duration-200 tracking-wide">
             Goodbye, <%= currentUser.firstName %>
           </a>
         <% } else { %>
-          <a href="/login" class="text-sm text-warmGray hover:text-roseGold transition-colors duration-200 tracking-wide">Login</a>
+          <a href="/login" class="text-sm text-warmGray hover:text-roseGold dark:text-warmGray dark:hover:text-roseGold transition-colors duration-200 tracking-wide">Login</a>
           <a href="/sign-up" class="text-sm bg-roseGold text-ivory px-5 py-3 rounded-btn hover:brightness-110 transition-all duration-200 shadow-glow tracking-wide">
             Join Us
           </a>
         <% } %>
+
+        <!-- Dark mode toggle -->
+        <button
+          id="theme-toggle"
+          class="text-warmGray hover:text-roseGold transition-colors duration-200 text-lg focus:outline-none"
+          aria-label="Toggle dark mode"
+        >
+          <span id="theme-icon">🌙</span>
+        </button>
       </nav>
 
     </div>
@@ -43,14 +58,14 @@
 
     <!-- Flash messages -->
     <% if (success && success.length > 0) { %>
-      <div class="mb-6 bg-softBlush border-l-4 border-roseGold rounded-btn px-5 py-4 flex justify-between items-center shadow-soft">
-        <p class="text-sm text-deepPlum"><%= success[0] %></p>
+      <div class="mb-6 bg-softBlush dark:bg-dustyMauve border-l-4 border-roseGold rounded-btn px-5 py-4 flex justify-between items-center shadow-soft">
+        <p class="text-sm text-deepPlum dark:text-ivory"><%= success[0] %></p>
         <button onclick="this.parentElement.remove()" class="text-warmGray hover:text-roseGold text-lg leading-none ml-4">&times;</button>
       </div>
     <% } %>
 
     <% if (error && error.length > 0) { %>
-      <div class="mb-6 bg-softBlush border-l-4 border-roseGold rounded-btn px-5 py-4 flex justify-between items-center shadow-soft">
+      <div class="mb-6 bg-softBlush dark:bg-dustyMauve border-l-4 border-roseGold rounded-btn px-5 py-4 flex justify-between items-center shadow-soft">
         <p class="text-sm text-roseGold"><%= error[0] %></p>
         <button onclick="this.parentElement.remove()" class="text-warmGray hover:text-roseGold text-lg leading-none ml-4">&times;</button>
       </div>
@@ -61,11 +76,35 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-champagne py-6 text-center text-xs text-warmGray tracking-widest uppercase">
+  <footer class="border-t border-champagne dark:border-dustyMauve py-6 text-center text-xs text-warmGray tracking-widest uppercase">
     House of Hope &mdash; a space for women who lift each other up 🌸
     <br>
     &copy; 2026 Joanne Costo. All rights reserved.
   </footer>
+
+  <!-- Dark mode script -->
+  <script>
+    const toggle = document.getElementById('theme-toggle')
+    const icon = document.getElementById('theme-icon')
+    const html = document.documentElement
+
+    // Set correct icon on load
+    if (localStorage.getItem('theme') === 'dark') {
+      icon.textContent = '☀️'
+    }
+
+    toggle.addEventListener('click', () => {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark')
+        localStorage.setItem('theme', 'light')
+        icon.textContent = '🌙'
+      } else {
+        html.classList.add('dark')
+        localStorage.setItem('theme', 'dark')
+        icon.textContent = '☀️'
+      }
+    })
+  </script>
 
 </body>
 </html>
