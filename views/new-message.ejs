@@ -1,0 +1,19 @@
+<h1>Create a New Message</h1>
+
+<% if (error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+
+<form method="POST" action="/new-message">
+  <div>
+    <label>Title</label><br>
+    <input type="text" name="title">
+  </div>
+  <br>
+  <div>
+    <label>Message</label><br>
+    <textarea name="text" rows="6" cols="50"></textarea>
+  </div>
+  <br>
+  <button type="submit">Post Message</button>
+</form>
