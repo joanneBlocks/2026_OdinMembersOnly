@@ -3,6 +3,8 @@ const session = require('express-session')
 const passport = require('passport')
 const expressLayouts = require('express-ejs-layouts')
 const path = require('path')
+app.use(express.static(path.join(__dirname, 'public')))
+
 require('dotenv').config()
 
 const indexRouter = require('./routes/index')

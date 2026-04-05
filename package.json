@@ -4,7 +4,9 @@
   "description": "Shhh. This club has secrets. Anyone can read the messages, but only real members see who wrote them — and only the admin can make things disappear. A fun full-stack project covering auth, roles, and permissions.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css",
+    "watch:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch",
+    "dev": "node app.js"
   },
   "repository": {
     "type": "git",
