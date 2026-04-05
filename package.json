@@ -6,6 +6,8 @@
   "scripts": {
     "build:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css",
     "watch:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch",
+    "build:js": "vite build",
+    "watch:js": "vite build --watch",
     "dev": "node app.js"
   },
   "repository": {
