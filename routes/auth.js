@@ -33,8 +33,7 @@ router.post('/sign-up', [
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: hashed,
-        isAdmin: req.body.isAdmin === 'on'
+        password: hashed
       }
     })
     req.flash('success', 'Welcome to House of Hope! Please log in. 🌸')
