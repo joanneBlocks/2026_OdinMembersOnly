@@ -5,8 +5,8 @@
 
 <div
   id="message-board-root"
-  data-messages="<%- JSON.stringify(messages) %>"
-  data-current-user="<%- safeUser ? JSON.stringify(safeUser) : '' %>"
+  data-messages="<%- encodeURIComponent(JSON.stringify(messages)) %>"
+  data-current-user="<%- safeUser ? encodeURIComponent(JSON.stringify(safeUser)) : '' %>"
 ></div>
 
 <script type="module" src="/js/messageBoard.js"></script>
