@@ -18,6 +18,7 @@ router.post('/new-message', async (req, res) => {
         authorId: req.user.id
       }
     })
+    req.flash('success', 'Your message has been shared with the board 🌸')
     res.redirect('/')
   } catch (err) {
     console.error(err)
@@ -34,6 +35,7 @@ router.post('/messages/:id/delete', async (req, res) => {
     await prisma.message.delete({
       where: { id: parseInt(req.params.id) }
     })
+    req.flash('success', 'Message deleted successfully.')
     res.redirect('/')
   } catch (err) {
     console.error(err)
