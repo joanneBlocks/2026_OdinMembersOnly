@@ -37,6 +37,7 @@ router.post('/sign-up', [
         isAdmin: req.body.isAdmin === 'on'
       }
     })
+    req.flash('success', 'Welcome to House of Hope! Please log in. 🌸')
     res.redirect('/login')
   } catch (err) {
     console.error(err)
@@ -51,11 +52,13 @@ router.get('/login', (req, res) => {
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login',
+  failureFlash: true
 }))
 
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
   req.logout((err) => {
     if (err) return next(err)
+    req.flash('success', 'You have been logged out. See you soon! 🌸')
     res.redirect('/')
   })
 })
