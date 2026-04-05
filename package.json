@@ -1,0 +1,35 @@
+{
+  "name": "2026_odinmembersonly",
+  "version": "1.0.0",
+  "description": "Shhh. This club has secrets. Anyone can read the messages, but only real members see who wrote them — and only the admin can make things disappear. A fun full-stack project covering auth, roles, and permissions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joanneBlocks/2026_OdinMembersOnly.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joanneBlocks/2026_OdinMembersOnly/issues"
+  },
+  "homepage": "https://github.com/joanneBlocks/2026_OdinMembersOnly#readme",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.6.0",
+    "@prisma/client": "^7.6.0",
+    "bcryptjs": "^3.0.3",
+    "connect-pg-simple": "^10.0.0",
+    "dotenv": "^17.4.0",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.19.0",
+    "express-validator": "^7.3.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "prisma": "^7.6.0"
+  }
+}
