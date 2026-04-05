@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>House of Hope</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/style.css?v=2">
 </head>
 <body class="bg-ivory font-sans text-deepPlum min-h-screen flex flex-col">
@@ -41,7 +40,24 @@
 
   <!-- Main -->
   <main class="flex-1 max-w-3xl mx-auto w-full px-8 py-12">
+
+    <!-- Flash messages -->
+    <% if (success && success.length > 0) { %>
+      <div class="mb-6 bg-softBlush border-l-4 border-roseGold rounded-btn px-5 py-4 flex justify-between items-center shadow-soft">
+        <p class="text-sm text-deepPlum"><%= success[0] %></p>
+        <button onclick="this.parentElement.remove()" class="text-warmGray hover:text-roseGold text-lg leading-none ml-4">&times;</button>
+      </div>
+    <% } %>
+
+    <% if (error && error.length > 0) { %>
+      <div class="mb-6 bg-softBlush border-l-4 border-roseGold rounded-btn px-5 py-4 flex justify-between items-center shadow-soft">
+        <p class="text-sm text-roseGold"><%= error[0] %></p>
+        <button onclick="this.parentElement.remove()" class="text-warmGray hover:text-roseGold text-lg leading-none ml-4">&times;</button>
+      </div>
+    <% } %>
+
     <%- body %>
+
   </main>
 
   <!-- Footer -->
