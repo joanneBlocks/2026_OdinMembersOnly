@@ -4,12 +4,6 @@
     <p class="text-warmGray text-sm tracking-wide">We've missed you 🌸</p>
   </div>
 
-  <% if (error) { %>
-    <div class="bg-softBlush border-l-4 border-roseGold rounded-btn p-4 mb-6">
-      <p class="text-sm text-roseGold"><%= error %></p>
-    </div>
-  <% } %>
-
   <form method="POST" action="/login" class="flex flex-col gap-5">
     <div>
       <label class="block text-xs uppercase tracking-widest text-warmGray mb-2">Email</label>
