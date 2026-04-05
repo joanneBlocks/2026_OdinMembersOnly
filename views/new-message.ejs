@@ -4,7 +4,7 @@
     <p class="text-warmGray text-sm tracking-wide">Spread light, hope and encouragement 🌸</p>
   </div>
 
-  <form method="POST" action="/new-message" class="flex flex-col gap-5">
+  <form method="POST" action="/new-message" enctype="multipart/form-data" class="flex flex-col gap-5">
     <div>
       <label class="block text-xs uppercase tracking-widest text-warmGray mb-2">Title</label>
       <input type="text" name="title" placeholder="A hopeful thought..." class="w-full bg-softBlush dark:bg-dustyMauve dark:text-ivory border border-warmGray border-opacity-30 rounded-btn px-4 py-3 text-sm text-deepPlum focus:outline-none focus:border-roseGold transition-colors duration-200 placeholder-warmGray">
@@ -13,8 +13,18 @@
       <label class="block text-xs uppercase tracking-widest text-warmGray mb-2">Message</label>
       <textarea name="text" rows="6" placeholder="Share what's on your heart..." class="w-full bg-softBlush dark:bg-dustyMauve dark:text-ivory border border-warmGray border-opacity-30 rounded-btn px-4 py-3 text-sm text-deepPlum focus:outline-none focus:border-roseGold transition-colors duration-200 placeholder-warmGray resize-none"></textarea>
     </div>
+    <div>
+      <label class="block text-xs uppercase tracking-widest text-warmGray mb-2">Photo <span class="normal-case text-warmGray">(optional)</span></label>
+      <input
+        type="file"
+        name="image"
+        accept="image/jpeg,image/png,image/webp,image/gif"
+        class="w-full text-sm text-warmGray file:mr-4 file:py-2 file:px-4 file:rounded-btn file:border-0 file:text-xs file:uppercase file:tracking-widest file:bg-roseGold file:text-ivory hover:file:brightness-110 transition-all duration-200"
+      >
+      <p class="text-xs text-warmGray mt-2">JPG, PNG, WebP or GIF · Max 5MB</p>
+    </div>
     <button type="submit" class="bg-roseGold text-ivory text-sm uppercase tracking-widest py-3 px-6 rounded-btn hover:brightness-110 shadow-glow transition-all duration-200 hover:scale-[1.02] mt-2">
-      Post to the Board
+      Post to the Heartspace
     </button>
   </form>
 </div>
